@@ -1,0 +1,29 @@
+.patientSearch input {
+  background-color: rgb(110, 94, 254);
+}
+.patientSearch {
+  text-align: center;
+}
+.patientList {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 20px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 500px;
+  margin-right: 500px;
+
+  padding-left: 20px;
+}
+
+.detailButton {
+  margin: 0;
+  padding: 20px;
+  background-color: white;
+}

@@ -1,0 +1,126 @@
+CREATE TABLE IF NOT EXISTS EMPLOYEE (
+    Ecode           INTEGER PRIMARY KEY AUTOINCREMENT,
+    E_fname         TEXT,
+    E_lname         TEXT,
+    E_dob           DATE,
+    E_address       TEXT,
+    E_gender        TEXT,
+    E_phone         TEXT,
+    Start_date      DATE,
+    Related_name    TEXT,
+    Degree_year     INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS NURSE (
+    Encode          INTEGER PRIMARY KEY REFERENCES EMPLOYEE(Ecode)
+					ON UPDATE CASCADE
+        			ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS DOCTOR (
+    Edcode          INTEGER PRIMARY KEY REFERENCES EMPLOYEE(Ecode)
+					ON UPDATE CASCADE
+        			ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS DEPARTMENT (
+    Depart_code     INTEGER PRIMARY KEY AUTOINCREMENT,
+    Title           TEXT
+);
+
+CREATE TABLE IF NOT EXISTS PATIENT (
+    P_Type          TEXT,
+    Pcode           INTEGER PRIMARY KEY AUTOINCREMENT,
+    P_fname         TEXT,
+    P_lname         TEXT,
+    P_dob           DATE,
+    P_gender        TEXT,
+    P_phone         TEXT
+);
+
+CREATE TABLE IF NOT EXISTS OUTPATIENT (
+    Pocode          INTEGER PRIMARY KEY REFERENCES PATIENT(Pcode) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS EXAMINATION (
+    Pocode          INTEGER REFERENCES OUTPATIENT(Pocode) ON UPDATE CASCADE	ON DELETE RESTRICT,
+    O_fee           REAL,
+    O_diagnosis     TEXT,
+    Exam_date       DATE,
+    Next_exam_date  DATE,
+    Doc_code        INTEGER REFERENCES DOCTOR(Edcode) ON UPDATE CASCADE ON DELETE NO ACTION,
+    PRIMARY KEY (Pocode, Exam_date, Next_exam_date)
+);
+
+CREATE TABLE IF NOT EXISTS INPATIENT (
+    Picode              INTEGER PRIMARY KEY REFERENCES PATIENT(Pcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Date_of_admission   DATE,
+    Sickroom            TEXT,
+    Date_of_discharge   DATE,
+    I_fee               REAL,
+    Nurse_code          INTEGER REFERENCES NURSE(Encode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Doc_code            INTEGER REFERENCES DOCTOR(Edcode) ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+CREATE TABLE IF NOT EXISTS TREATMENT (
+    Picode          INTEGER REFERENCES INPATIENT(Picode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    T_start_date    DATE,
+    T_end_date      DATE,
+    Result          TEXT,
+    PRIMARY KEY (Picode, T_start_date, T_end_date)
+);
+
+CREATE TABLE IF NOT EXISTS MEDICATION (
+    Mcode           INTEGER PRIMARY KEY AUTOINCREMENT,
+    M_name          TEXT,
+    Expiration_date DATE,
+    Effect          TEXT,
+    M_price         REAL
+);
+
+CREATE TABLE IF NOT EXISTS IMPORTED_MED (
+    Medcode         INTEGER REFERENCES MEDICATION(Mcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Import_price    REAL,
+    Quantity        INTEGER,
+    Import_date     DATE,
+    PRIMARY KEY (Medcode)
+);
+
+CREATE TABLE IF NOT EXISTS PROVIDER (
+    Prcode          INTEGER PRIMARY KEY AUTOINCREMENT,
+    Pr_name         TEXT,
+    Pr_address      TEXT,
+    Pr_phone        TEXT
+);
+
+CREATE TABLE IF NOT EXISTS PROVIDE (
+    Procode         INTEGER REFERENCES PROVIDER(Prcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Medprocode      INTEGER REFERENCES MEDICATION(Mcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    PRIMARY KEY (Procode, Medprocode)
+);
+
+CREATE TABLE IF NOT EXISTS T_CONTAIN (
+    Pincode         INTEGER REFERENCES TREATMENT(Picode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Medincode       INTEGER  REFERENCES MEDICATION(Mcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    PRIMARY KEY (Pincode, Medincode)
+);
+
+CREATE TABLE IF NOT EXISTS E_CONTAIN (
+    Poutcode        INTEGER REFERENCES EXAMINATION(Pocode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    Medoutcode      INTEGER REFERENCES MEDICATION(Mcode) ON UPDATE CASCADE ON DELETE RESTRICT,
+    PRIMARY KEY (Poutcode, Medoutcode)
+);
+
+CREATE TABLE IF NOT EXISTS USER_TABLE (
+    id              TEXT PRIMARY KEY,
+    password        TEXT,
+    userType        TEXT
+);
+
+ALTER TABLE EMPLOYEE ADD column Department_code INTEGER REFERENCES DEPARTMENT(Depart_code)
+		ON UPDATE CASCADE
+		ON DELETE SET NULL;
+
+ALTER TABLE DEPARTMENT ADD column Dean_code INTEGER REFERENCES DOCTOR(Edcode)
+		ON UPDATE CASCADE
+		ON DELETE SET NULL;

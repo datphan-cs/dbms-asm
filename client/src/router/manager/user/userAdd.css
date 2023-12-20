@@ -1,0 +1,30 @@
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.signup button {
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(110, 94, 254);
+  font-size: 30px;
+}
+.signup h2 {
+  padding-top: 100px;
+  text-align: center;
+  color: rgb(110, 94, 254);
+  font-size: 60px;
+}
+.signup input {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  border-color: rgb(110, 94, 254);
+  background-color: white;
+  font-size: 30px;
+  height: 100px;
+  width: 300px;
+  color: rgb(110, 94, 254);
+  border-width: 3px;
+  margin-top: 35px;
+}

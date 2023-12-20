@@ -1,0 +1,41 @@
+.home {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  height: 633px;
+  background-color: rgb(255, 255, 255);
+}
+
+.userTag {
+  background-color: crimson;
+  width: 400px;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 80px;
+  border-radius: 50px;
+}
+
+.user-link {
+  color: white;
+}
+
+.patient-link {
+  color: white;
+}
+.patientTag {
+  background-color: limegreen;
+  width: 400px;
+  height: 400px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 80px;
+  border-radius: 50px;
+}

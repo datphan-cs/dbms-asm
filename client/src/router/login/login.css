@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+}
+.LoginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  justify-content: center;
+}
+
+.Login {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background-color: #53565a;
+  border-radius: 50px 50px 50px 50px;
+}
+
+input {
+  width: 300px;
+  height: 50px;
+  border: 2px solid white;
+  border-radius: 100px 100px 100px 100px;
+  background: black;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding-left: 20px;
+  color: white;
+}
+
+input.name {
+  width: 140px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+input.dob {
+  width: 87px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+select {
+  width: 140px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-bottom: 20px;
+
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 100px 100px 100px 100px;
+}
+
+h1 {
+  color: white;
+  margin-bottom: 100px;
+  margin-top: 100px;
+}
+
+button {
+  color: black;
+  background-color: #04aa6d;
+  margin-top: 20px;
+  padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: 15px;
+}

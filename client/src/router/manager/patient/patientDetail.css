@@ -1,0 +1,45 @@
+.patientDetail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.patientInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  margin-top: 100px;
+  height: 300px;
+}
+
+h2 {
+  font-size: 80px;
+}
+
+.checkupTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 100px;
+}
+
+.checkupList {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: white;
+  border: 5px solid black;
+  border-radius: 20px;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: 250px;
+}
