@@ -1,14 +1,14 @@
-export const selectAll = (req,res,db) => {
-    const sqlSelcet = 'SELECT * FROM OUTPATIENT;'
+export const selectAll = (req, res, db) => {
+	const sqlSelect = 'SELECT * FROM OUTPATIENT;'
 
-    db.query(sqlSelcet,
-        
-        (err, result) => {
-            if(err) {
-                console.log(err)
-            } else {
-                res.send(result)
-            }
-        }
-    )
+	db.all(sqlSelect,
+
+		(err, result) => {
+			if (err) {
+				console.log(err)
+			} else {
+				res.send(result)
+			}
+		}
+	)
 }
