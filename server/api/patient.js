@@ -73,8 +73,8 @@ function getCodeFromDocID(sql, docID, db) {
 	let promise = new Promise((resolve, reject) => {
 		db.all(sql, [docID],
 
-			(error, result) => {
-				if (error) {
+			(err, result) => {
+				if (err) {
 					console.log(err);
 				} else {
 					resolve(result);
@@ -92,12 +92,30 @@ export const getInPatientIDFromDocID = async (req, res, db) => {
 
 	const sqlSelect = 'SELECT * FROM patient WHERE Pcode IN (SELECT Picode FROM inpatient WHERE Doc_code = ?);'
 	const sqlSelect2 = 'SELECT Count(Pcode) as Total FROM patient WHERE Pcode IN (SELECT Picode FROM inpatient WHERE Doc_code = ?);'
-	const res1 = await db.all(sqlSelect, docID)
-	const res2 = await db.all(sqlSelect2, docID)
-	res.send({
-		result: res1,
-		total: res2
+	db.all(sqlSelect, [docID], (err, result1) => {
+		if (err) {
+			console.log(err);
+		} else {
+			db.get(sqlSelect2, docID, (err, result2) => {
+				if (err) {
+					console.log(err)
+				} else {
+					const responses = {
+						query: result1,
+						total: result2
+					}
+					console.log(responses)
+					res.send(responses)
+				}
+			})
+
+		}
 	})
+
+	// console.log(res1)
+
+	// console.log(result.result)
+	// res.send(result)
 	// const piCode = await getCodeFromDocID(sqlTakePicode, docID, db);
 
 	// const poCode = await getCodeFromDocID(sqlTakePocode, docID, db);

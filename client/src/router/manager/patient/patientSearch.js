@@ -12,6 +12,7 @@ import './patientSearch.css'
 const PatientSearch = () => {
 
 	const [patientList, setPaList] = useState([])
+	const [total_patient, setTotal] = useState([])
 
 	useEffect(() => {
 		Axios.get('http://localhost:3001/api/patient/getAll').then((res) => {
@@ -38,49 +39,53 @@ const PatientSearch = () => {
 			}
 		}).then((res) => {
 			let Palist = []
-			res.data.map((e) => Palist.push(e))
-			console.log(`The Palist is ${Palist}`)
+			console.log(res.data)
+			res.data.query.map((e) => Palist.push(e))
+			// console.log(`The Palist is ${Palist}`)
 			setPaList(Palist)
+			setTotal(res.data.total.Total)
 		})
 	}
 
 	return ( <
-		div className = 'patientSearch' >
-		<
-		div className = 'search' >
-		<
-		input type = "text"
-		placeholder = "Search Patient ID"
-		onChange = {
-			(e) => {
-				setSearchPaID(e.target.value)
+			div className = 'patientSearch' >
+			<
+			div className = 'search' >
+			<
+			input type = "text"
+			placeholder = "Search Patient ID"
+			onChange = {
+				(e) => {
+					setSearchPaID(e.target.value)
+				}
 			}
-		}
-		/> <
-		button className = 'searchButton'
-		onClick = {
-			searchWithPaID
-		} > Search < /button> < /
-		div >
+			/> <
+			button className = 'searchButton'
+			onClick = {
+				searchWithPaID
+			} > Search < /button> < /
+			div >
 
-		<
-		div className = 'search' >
-		<
-		input type = "text"
-		placeholder = "Search Doctor ID"
-		onChange = {
-			(e) => {
-				setSearchDocID(e.target.value)
+			<
+			div className = 'search' >
+			<
+			input type = "text"
+			placeholder = "Search Doctor ID"
+			onChange = {
+				(e) => {
+					setSearchDocID(e.target.value)
+				}
 			}
-		}
-		/> <
-		button className = 'searchButton'
-		onClick = {
-			searchWithDocID
-		} > Search < /button> < /
-		div >
-
-		{
+			/>   <
+			button className = 'searchButton'
+			onClick = {
+				searchWithDocID
+			} > Search < /button> < /
+			div >
+			<
+			div > Total: {
+				total_patient
+			} < /div> {
 			patientList.map((val) => {
 				return ( <
 					div className = 'patientList' >
@@ -106,7 +111,7 @@ const PatientSearch = () => {
 			})
 		} <
 		/div>
-	)
+)
 }
 
 export default PatientSearch
