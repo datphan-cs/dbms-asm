@@ -34,15 +34,15 @@ const Patient = () => {
 	// 	})
 	// }
 
-	const updateButton = (P_code) => {
-		Axios.put('http://localhost:3001/api/patient/update', {
-			P_code: P_code,
-			P_lname: newLname,
+	// const updateButton = (P_code) => {
+	// 	Axios.put('http://localhost:3001/api/patient/update', {
+	// 		P_code: P_code,
+	// 		P_lname: newLname,
 
-		}).then(() => {
-			alert('update success')
-		})
-	}
+	// 	}).then(() => {
+	// 		alert('update success')
+	// 	})
+	// }
 
 	// const [searchPatient, setSearchPatient] = useState('')
 

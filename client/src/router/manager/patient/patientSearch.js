@@ -12,6 +12,7 @@ import './patientSearch.css'
 const PatientSearch = () => {
 
 	const [patientList, setPaList] = useState([])
+	const [total_patient, setTotal] = useState([])
 
 	useEffect(() => {
 		Axios.get('http://localhost:3001/api/patient/getAll').then((res) => {
@@ -38,9 +39,11 @@ const PatientSearch = () => {
 			}
 		}).then((res) => {
 			let Palist = []
-			res.data.map((e) => Palist.push(e))
-			console.log(`The Palist is ${Palist}`)
+			console.log(res.data)
+			res.data.query.map((e) => Palist.push(e))
+			// console.log(`The Palist is ${Palist}`)
 			setPaList(Palist)
+			setTotal(res.data.total.Total)
 		})
 	}
 
@@ -58,6 +61,24 @@ const PatientSearch = () => {
 		onClick = {
 			searchWithPaID
 		} > Search </button> </div >
+	return ( <
+			div className = 'patientSearch' >
+			<
+			div className = 'search' >
+			<
+			input type = "text"
+			placeholder = "Search Patient ID"
+			onChange = {
+				(e) => {
+					setSearchPaID(e.target.value)
+				}
+			}
+			/> <
+			button className = 'searchButton'
+			onClick = {
+				searchWithPaID
+			} > Search < /button> < /
+			div >
 
 		<div className = 'search' >
 		<input type = "text"
