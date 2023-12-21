@@ -39,12 +39,13 @@ export const selectOne = (req, res, db) => {
 	const Pcode = req.query.Pcode
 
 	const sqlSelcet = 'SELECT * FROM patient WHERE Pcode = ?;'
-	db.get(sqlSelcet, Pcode,
+	db.all(sqlSelcet, Pcode,
 
 		(err, result) => {
 			if (err) {
 				console.log(err)
 			} else {
+				// console.log(result)
 				res.send(result)
 			}
 		}
@@ -115,8 +116,9 @@ export const getInPatientIDFromDocID = async (req, res, db) => {
 }
 
 export const del = (req, res, db) => {
-	const P_code = req.params.P_code
 
+	const P_code = req.query.P_code
+	// console.log(P_code)
 	const sqlDelete = 'DELETE FROM patient WHERE Pcode = ?'
 	db.run(sqlDelete, P_code,
 
@@ -132,17 +134,19 @@ export const del = (req, res, db) => {
 }
 
 export const update = (req, res, db) => {
-	const P_code = req.body.P_code
-	const P_lname = req.body.P_lname
+	const P_code = req.query.P_code
+	const P_lname = req.query.P_lname
+	console.log(req.query)
+	// console.log(P_code)
+	const sqlUpdate = 'UPDATE patient SET P_lname = ? WHERE Pcode = ?'
+	db.run(sqlUpdate, [P_lname, P_code],
 
-	const sqlUpdate = 'UPDATE patient SET P_lname = ? WHERE P_code = ?'
-	db.query(sqlUpdate, [P_lname, P_code],
-
-		(err, result) => {
+		(err) => {
 			if (err) {
 				console.log(err)
 			} else {
-				res.send(result)
+				res.sendStatus(200)
+				// res.send(result)
 			}
 		})
 }

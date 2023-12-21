@@ -67,10 +67,10 @@ app.get('/api/patient/getIDstart', (req, res) => {
 app.get('/api/patient/getDocIDstart', (req, res) => {
 	patient.getInPatientIDFromDocID(req, res, db)
 })
-app.delete('/api/patient/delete/:Pcode', (req, res) => {
+app.delete('/api/patient/delete', (req, res) => {
 	patient.del(req, res, db)
 })
-app.put('/api/patient/update', (req, res) => {
+app.get('/api/patient/update', (req, res) => {
 	patient.update(req, res, db)
 })
 
