@@ -46,75 +46,59 @@ const PatientSearch = () => {
 			setTotal(res.data.total.Total)
 		})
 	}
-
-	return ( <div className = 'patientSearch' >
-		<div className = 'search' >
-		<input type = "text"
-		placeholder = "Search Patient ID"
-		onChange = {
-			(e) => {
-				setSearchPaID(e.target.value)
-			}
-		}
-		/> 
-		<button className = 'searchButton'
-		onClick = {
-			searchWithPaID
-		} > Search </button> </div >
-	return ( <
-			div className = 'patientSearch' >
-			<
-			div className = 'search' >
-			<
-			input type = "text"
-			placeholder = "Search Patient ID"
-			onChange = {
-				(e) => {
-					setSearchPaID(e.target.value)
+	return (<div className='patientSearch' >
+		<div className='search' >
+			<input type="text"
+				placeholder="Search Patient ID"
+				onChange={
+					(e) => {
+						setSearchPaID(e.target.value)
+					}
 				}
-			}
-			/> <
-			button className = 'searchButton'
-			onClick = {
-				searchWithPaID
-			} > Search < /button> < /
-			div >
+			/> <button className='searchButton'
+				onClick={
+					searchWithPaID
+				} > Search </button> </div >
 
-		<div className = 'search' >
-		<input type = "text"
-		placeholder = "Search Doctor ID"
-		onChange = {
-			(e) => {
-				setSearchDocID(e.target.value)
-			}
-		}/> 
-		<button className = 'searchButton'
-		onClick = {
-			searchWithDocID
-		} > Search </button> </div >
+		<div className='search' >
+			<input type="text"
+				placeholder="Search Doctor ID"
+				onChange={
+					(e) => {
+						setSearchDocID(e.target.value)
+					}
+				} />
+			<button className='searchButton'
+				onClick={
+					searchWithDocID
+				} > Search </button> </div >
+		<div class="totalPatient"> Total: {
+			total_patient}
+		</div>
 
 		{
 			patientList.map((val) => {
-				return ( <div className = 'patientList' >
+				return (<div className='patientList' >
 					<h3> Patient: {
 						val.Pcode
 					}, Name: {
-						val.P_fname + ' ' + val.P_lname
-					} </h3> 
-					<button className = 'detailButton'
-					onClick = {
-						() => {
-							localStorage.setItem('Pcode', val.Pcode)
-						}
-					} >
-					<Link to = '/manager/patient/detail'>
-					Detail 
-					</Link> 
-					</button > 
-					</div>
+							val.P_fname + ' ' + val.P_lname
+						} </h3>
+					<button className='detailButton'
+						onClick={
+							() => {
+								localStorage.setItem('Pcode', val.Pcode)
+							}
+						} >
+						<Link to='/manager/patient/detail'>
+							Detail
+						</Link>
+					</button >
+				</div>
 				)
 			})
-		} </div>
+		}
+	</div>
 	)
 }
 
