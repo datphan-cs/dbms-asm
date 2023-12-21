@@ -25,7 +25,9 @@ h2 {
 
   margin-top: 100px;
 }
-
+.checkupInfo{
+  margin-top: 100px;
+}
 .checkupList {
   display: flex;
   flex-direction: column;

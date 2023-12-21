@@ -12,7 +12,7 @@ const Login = () => {
 
     const authLogin = (res) => {
         let data = res.data
-        if(data.length == 0) {
+        if(data.length === 0) {
             alert('You are not DBA')
         }
         else{

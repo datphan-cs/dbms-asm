@@ -22,4 +22,4 @@ const PatientHome = () => {
     )
 }
 
-export default PatientHome
+export default PatientHome;

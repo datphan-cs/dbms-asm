@@ -27,95 +27,77 @@ const PatientAdd = () => {
 		}).then((res) => alert('Add New Patient Success'))
 	}
 
-	return ( <
-		div className = 'Login' >
-		<
-		h2 > Add patient < /h2>
+	return ( <div className = 'Login' >
+		<h2> Add patient </h2>
 
-		<
-		div >
-		<
-		input className = 'name'
+		<div>
+		<input className = 'name'
 		type = "text"
 		placeholder = "First Name"
 		onChange = {
 			(e) => setFname(e.target.value)
 		}
-		/> <
-		input className = 'name'
+		/> <input className = 'name'
 		type = "text"
 		placeholder = "Last name"
 		onChange = {
 			(e) => setLname(e.target.value)
 		}
-		/> < /
-		div >
+		/> </div>
 
-		<
-		div >
-		<
-		input className = 'dob'
+		<div>
+		<input className = 'dob'
 		type = "number"
 		placeholder = "DD"
 		onChange = {
 			(e) => setDD(e.target.value)
 		}
-		/> <
-		input className = 'dob'
+		/> 
+		<input className = 'dob'
 		type = "number"
 		placeholder = "MM"
 		onChange = {
 			(e) => setMM(e.target.value)
 		}
-		/> <
-		input className = 'dob'
+		/> 
+		<input className = 'dob'
 		type = "number"
 		placeholder = "YYYY"
 		onChange = {
 			(e) => setYYYY(e.target.value)
-		}
-		/> < /
-		div >
+		}/> </div>
 
-		<
-		input type = "text"
+		<input type = "text"
 		placeholder = "Phone"
 		onChange = {
 			(e) => setPhone(e.target.value)
 		}
 		/>
-
-		<
-		div className = 'selectBox'
+		<div className = 'selectBox'
 		onChange = {
 			(e) => setType(e.target.value)
-		} >
-		<
-		select >
-		<
-		option > Type of patient ? < /option> <
-		option value = 'IP' > Inpatient < /option> <
-		option value = 'OP' > Outpatient < /option> < /
-		select >
+		}>
+		<select >
+		<option> Type of patient ? </option> 
+		<option value = 'IP'> Inpatient </option> 
+		<option value = 'OP' > Outpatient </option> 
+		</select >
 
-		<
-		select onChange = {
+		<select onChange = {
 			(e) => setGender(e.target.value)
 		} >
-		<
-		option > Gender < /option> <
-		option value = 'M' > Male < /option> <
-		option value = 'F' > Female < /option> <
-		option value = 'O' > Other < /option> < /
-		select > <
-		/div>
+		<option > Gender </option> 
+		<option value = 'M' > Male </option> 
+		<option value = 'F' > Female </option> 
+		<option value = 'O' > Other </option> 
+		</select> 
+		</div>
 
-		<
-		button onClick = {
+		<button onClick = {
 			addSubmit
-		} > ADD < /button> < /
-		div >
+		}> ADD </button> 
+		</div >
 	)
 }
 
-export default PatientAdd
+export default PatientAdd;

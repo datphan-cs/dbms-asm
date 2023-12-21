@@ -46,41 +46,25 @@ const Patient = () => {
 
 	// const [searchPatient, setSearchPatient] = useState('')
 
-	return ( <
-		div className = 'managerPatient' >
-		<
-		Switch >
-		<
-		Route exact path = '/manager/patient' >
-		<
-		PatientHome / >
-		<
-		/Route>
+	return ( <div className = 'managerPatient' >
+		<Switch>
+		<Route exact path = '/manager/patient'>
+		<PatientHome/>
+		</Route>
 
-		<
-		Route path = '/manager/patient/add' >
-		<
-		PatientAdd / >
-		<
-		/Route>
+		<Route path = '/manager/patient/add' >
+		<PatientAdd/>
+		</Route>
 
-		<
-		Route path = '/manager/patient/search' >
-		<
-		PatientSearch / >
-		<
-		/Route>
+		<Route path = '/manager/patient/search' >
+		<PatientSearch/>
+		</Route>
 
-		<
-		Route path = '/manager/patient/detail' >
-		<
-		PatientDetail / >
-		<
-		/Route> < /
-		Switch > <
-		/div>
+		<Route path = '/manager/patient/detail'>
+		<PatientDetail/>
+		</Route> </Switch> </div>
 
 	)
 }
 
-export default Patient
+export default Patient;

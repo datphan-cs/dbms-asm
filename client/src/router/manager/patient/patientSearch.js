@@ -44,69 +44,57 @@ const PatientSearch = () => {
 		})
 	}
 
-	return ( <
-		div className = 'patientSearch' >
-		<
-		div className = 'search' >
-		<
-		input type = "text"
+	return ( <div className = 'patientSearch' >
+		<div className = 'search' >
+		<input type = "text"
 		placeholder = "Search Patient ID"
 		onChange = {
 			(e) => {
 				setSearchPaID(e.target.value)
 			}
 		}
-		/> <
-		button className = 'searchButton'
+		/> 
+		<button className = 'searchButton'
 		onClick = {
 			searchWithPaID
-		} > Search < /button> < /
-		div >
+		} > Search </button> </div >
 
-		<
-		div className = 'search' >
-		<
-		input type = "text"
+		<div className = 'search' >
+		<input type = "text"
 		placeholder = "Search Doctor ID"
 		onChange = {
 			(e) => {
 				setSearchDocID(e.target.value)
 			}
-		}
-		/> <
-		button className = 'searchButton'
+		}/> 
+		<button className = 'searchButton'
 		onClick = {
 			searchWithDocID
-		} > Search < /button> < /
-		div >
+		} > Search </button> </div >
 
 		{
 			patientList.map((val) => {
-				return ( <
-					div className = 'patientList' >
-					<
-					h3 > Patient: {
+				return ( <div className = 'patientList' >
+					<h3> Patient: {
 						val.Pcode
 					}, Name: {
 						val.P_fname + ' ' + val.P_lname
-					} < /h3> <
-					button className = 'detailButton'
+					} </h3> 
+					<button className = 'detailButton'
 					onClick = {
 						() => {
 							localStorage.setItem('Pcode', val.Pcode)
 						}
 					} >
-					<
-					Link to = '/manager/patient/detail' >
-					Detail <
-					/Link> < /
-					button > <
-					/div>
+					<Link to = '/manager/patient/detail'>
+					Detail 
+					</Link> 
+					</button > 
+					</div>
 				)
 			})
-		} <
-		/div>
+		} </div>
 	)
 }
 
-export default PatientSearch
+export default PatientSearch;

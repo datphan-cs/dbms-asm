@@ -91,41 +91,26 @@ const PatientDetail = () => {
 
 
 
-	return ( <
-		div className = 'patientDetail' >
-		<
-		div className = 'patientInfo' >
-		<
-		h2 > Patient Detail < /h2>     <
-		div >
-		Patient Type: {
-			patient.P_Type
-		} <
-		/div>
+	return ( <div className = 'patientDetail' >
+				<div className = 'patientInfo' >	
+					<h2> Patient Detail </h2>     
+					<div> Patient Type: {patient.P_Type} </div>
 
-		<
-		div > {
-			(patient.P_Type == 'IP') ? `Doc code: ${patient.Doc_code}` : ``
-		} <
-		/div>
+		<div> {
+			(patient.P_Type === 'IP') ? `Doc code: ${patient.Doc_code}` : ``
+		} </div>
 
-		<
-		div > {
-			(patient.P_Type == 'IP') ? `Nurse code: ${patient.Nurse_code}` : ``
-		} <
-		/div>
-
-		<
-		div >
+		<div> {
+			(patient.P_Type === 'IP') ? `Nurse code: ${patient.Nurse_code}` : ``
+		} </div>
+		<div>
 		First Name: {
 			patient.P_fname
-		} <
-		/div>
+		} </div>
 
 
-		<
-		div >
-		Last Name: < input type = "text"
+		<div>
+		Last Name: <input type = "text"
 		value = {
 			patient.P_lname
 		}
@@ -134,133 +119,91 @@ const PatientDetail = () => {
 				...patient,
 				P_lname: e.target.value
 			})
-		}
-		/>< /
-		div >
+		}/></div >
 
 
-		<
-		div >
+		<div>
 		DOB: {
 			patient.P_dob
-		} <
-		/div>
+		} </div>
 
-		<
-		div >
+		<div>
 		Gender: {
 			patient.P_gender
-		} <
-		/div> <
-		div >
+		} </div> 
+		<div>
 		Phone: {
 			patient.P_phone
-		} < /div>    
+		} </div>    
 
-		<
-		button onClick = {
-			deleteButton
-		} > DELETE < /button>     
+		<button onClick = {deleteButton} > DELETE </button>     
 
-		<
-		button onClick = {
-			updateButton
-		} > UPDATE < /button>   < /
-		div >
+		<button onClick = {
+			updateButton}> UPDATE </button>   </div>
 
 
-		<
-		div className = 'checkupInfo' >
-		<
-		h2 className = 'checkupTitle' > Checkup List < /h2>
+		<div className = 'checkupInfo'>
+		<h2 className = 'checkupTitle' > Checkup List </h2>
 
-		<
-		div > {
+		<div> {
 			examList.map((val) => {
-				return ( <
-					div className = 'checkupList' >
-					<
-					div >
+				return ( <div className = 'checkupList'>
+					<div>
 					Fee: {
 						val.O_fee
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					Date: {
 						val.Exam_date
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					Diagnosis: {
 						val.O_diagnosis
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					Next exam date: {
 						val.Next_exam_date
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					DoctorID: {
 						val.Doc_code
-					} <
-					/div> < /
-					div >
+					} </div> </div >
 				)
 			})
-		} <
-		/div>
+		} </div>
 
-		<
-		div > {
+		<div> {
 			treatmentList.map((val) => {
-				return ( <
-					div className = 'checkupList' >
-					<
-					div >
+				return ( <div className = 'checkupList' >
+					<div>
 					Fee: {
 						patient.I_fee
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					Start Date: {
 						val.T_start_date
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					End Date: {
 						val.T_end_date
-					} <
-					/div>
+					} </div>
 
-					<
-					div >
+					<div>
 					Result: {
 						val.Result
-					} <
-					/div> < /
-					div >
+					} </div> </div >
 				)
 			})
-		} <
-		/div> < /
-		div >
+		} </div> </div >
 
-		<
-		/div>
+		</div>
 	)
 }
 
-export default PatientDetail
+export default PatientDetail;
