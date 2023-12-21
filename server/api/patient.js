@@ -55,13 +55,14 @@ export const selectOne = (req, res, db) => {
 export const selectAllWithStart = (req, res, db) => {
 	const Pcode = req.query.Pcode
 
-	const sqlSelect = 'SELECT * FROM patient WHERE Pcode LIKE ?';
-	db.all(sqlSelect, Pcode + '%',
+	const sqlSelect = 'SELECT * FROM patient WHERE Pcode = ?';
+	db.all(sqlSelect, Pcode,
 
 		(err, result) => {
 			if (err) {
 				console.log(err)
 			} else {
+				console.log(result)
 				res.send(result)
 			}
 		}
@@ -86,33 +87,41 @@ function getCodeFromDocID(sql, docID, db) {
 
 export const getInPatientIDFromDocID = async (req, res, db) => {
 	const docID = req.query.Pcode;
+	console.log(req.query)
 
-	const sqlTakePicode = 'SELECT Picode FROM inpatient WHERE Doc_code = ?';
-	const sqlTakePocode = 'SELECT Pocode FROM examination WHERE Doc_code = ?';
 
-	const sqlSelect = 'SELECT * FROM patient WHERE Pcode = ?;'
+	const sqlSelect = 'SELECT * FROM patient WHERE Pcode IN (SELECT Picode FROM inpatient WHERE Doc_code = ?);'
+	const sqlSelect2 = 'SELECT Count(Pcode) as Total FROM patient WHERE Pcode IN (SELECT Picode FROM inpatient WHERE Doc_code = ?);'
+	const res1 = await db.all(sqlSelect, docID)
+	const res2 = await db.all(sqlSelect2, docID)
+	res.send({
+		result: res1,
+		total: res2
+	})
+	// const piCode = await getCodeFromDocID(sqlTakePicode, docID, db);
 
-	const piCode = await getCodeFromDocID(sqlTakePicode, docID, db);
-	const poCode = await getCodeFromDocID(sqlTakePocode, docID, db);
-	const pCodes = piCode.concat(poCode);
+	// const poCode = await getCodeFromDocID(sqlTakePocode, docID, db);
+	// const pCodes = piCode.concat(poCode);
 
-	const sendResToFE = async () => {
+	// const sendResToFE = async () => {
 
-		const piResult = pCodes.map(async (e) => {
-			if (e.Picode) {
-				const piValue = await getCodeFromDocID(sqlSelect, e.Picode, db)
-				return piValue
-			}
-			if (e.Pocode) {
-				const poValue = await getCodeFromDocID(sqlSelect, e.Pocode, db)
-				return poValue
-			}
-		})
+	// 	const piResult = pCodes.map(async (e) => {
+	// 		if (e.Picode) {
+	// 			const piValue = await getCodeFromDocID(sqlSelect, e.Picode, db)
 
-		return Promise.all(piResult)
-	}
+	// 			return piValue
+	// 		}
+	// 		if (e.Pocode) {
+	// 			const poValue = await getCodeFromDocID(sqlSelect, e.Pocode, db)
+	// 			return poValue
+	// 		}
+	// 	})
 
-	res.send(await sendResToFE())
+	// 	return Promise.all(piResult)
+	// }
+	// const result = await sendResToFE()
+	// console.log(`The final result is ${result[0]}`)
+	// res.send(result)
 }
 
 export const del = (req, res, db) => {
